@@ -1,0 +1,4 @@
+enum Coloration {
+    BLACK,
+    WHITE
+}
