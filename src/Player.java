@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Map;
+
 abstract class Player {
     private final Coloration coloration;
     protected Player (Coloration coloration) {
@@ -6,5 +9,5 @@ abstract class Player {
     protected Coloration getColoration() {
         return coloration;
     }
-    abstract Move makeAMove();
+    abstract Move makeAMove(Map<Coordinate, ArrayList<Change>> possibilities);
 }

@@ -1,8 +1,8 @@
-public class Coordinates {
+public class Coordinate {
     private final int x;
     private final int y;
 
-    public Coordinates(int x, int y) {
+    public Coordinate(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -13,5 +13,10 @@ public class Coordinates {
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + (x + 1) + ", " + (y + 1) + ")";
     }
 }

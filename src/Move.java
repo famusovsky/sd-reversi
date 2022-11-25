@@ -1,9 +1,13 @@
 import java.util.ArrayList;
 
 public class Move {
-    protected ArrayList<Change> changes;
+    private final ArrayList<Change> changes;
 
     Move(ArrayList<Change> changes) {
         this.changes = changes;
+    }
+
+    public ArrayList<Change> getChanges() {
+        return this.changes;
     }
 }

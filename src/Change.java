@@ -26,4 +26,8 @@ public class Change {
     public Coloration getNewColoration() {
         return this.newColoration;
     }
+    @Override
+    public String toString() {
+        return String.format("Change: (%d, %d) %s -> %s", this.x, this.y, this.oldColoration, this.newColoration);
+    }
 }
