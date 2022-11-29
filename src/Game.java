@@ -20,11 +20,25 @@ public final class Game {
             }
             break;
         }
+        System.out.println("На каком уровне сложности вы хотите играть? (обычный = N / продвинутый = A)");
+        input = Main.scanner.nextLine();
+        while (true) {
+            switch (input) {
+                case "N" -> isAdvanced = false;
+                case "A" -> isAdvanced = true;
+                default -> {
+                    System.out.println("Неверный ввод. Попробуйте ещё раз.");
+                    input = Main.scanner.nextLine();
+                    continue;
+                }
+            }
+            break;
+        }
         if (isRealPlayerFirst) {
             players[0] = new RealPlayer(Coloration.WHITE);
-            players[1] = new AIPlayer(Coloration.BLACK);
+            players[1] = new AIPlayer(Coloration.BLACK, isAdvanced);
         } else {
-            players[0] = new AIPlayer(Coloration.WHITE);
+            players[0] = new AIPlayer(Coloration.WHITE, isAdvanced);
             players[1] = new RealPlayer(Coloration.BLACK);
         }
     }
