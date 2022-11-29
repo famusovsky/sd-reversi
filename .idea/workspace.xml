@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8233b252-d65d-4e8a-a02b-a1f19786c9ce" name="Changes" comment="Blanks of classes are made">
-      <change afterPath="$PROJECT_DIR$/src/Possibility.java" afterDir="false" />
+    <list default="true" id="8233b252-d65d-4e8a-a02b-a1f19786c9ce" name="Changes" comment="Possibility class added -- from now on, the possibilities are displayed in the proper order">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AIPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AIPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RealPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RealPlayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -83,7 +79,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669316453112</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Possibility class added -- from now on, the possibilities are displayed in the proper order">
+      <created>1669725661741</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669725661741</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,6 +105,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Blanks of classes are made" />
-    <option name="LAST_COMMIT_MESSAGE" value="Blanks of classes are made" />
+    <MESSAGE value="Possibility class added -- from now on, the possibilities are displayed in the proper order" />
+    <option name="LAST_COMMIT_MESSAGE" value="Possibility class added -- from now on, the possibilities are displayed in the proper order" />
   </component>
 </project>

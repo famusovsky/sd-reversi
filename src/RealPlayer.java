@@ -7,20 +7,81 @@ public class RealPlayer extends Player {
         super(coloration);
     }
 
+    private void watchHistory() {
+        while (true) {
+            System.out.println("Чтобы сделать ход с текущего места введите 'M'. " +
+                    "Если вы хотите перейти на ход назад / вперёд -- введите 'B' / 'F'. " +
+                    "Если хотите выйти из истории введите 'E'.");
+            var input = Main.scanner.nextLine();
+            switch (input) {
+                case "M":
+                    break;
+                case "B":
+                    try {
+                        GameBoard.goBack();
+                        GameBoard.goBack();
+                        System.out.println(GameBoard.getString());
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("Невозможно перейти на ход назад.");
+                    }
+                    continue;
+                case "F":
+                    try {
+                        GameBoard.goForward();
+                        GameBoard.goForward();
+                        System.out.println(GameBoard.getString());
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("Невозможно перейти на ход вперёд.");
+                    }
+                    continue;
+                case "E":
+                    try {
+                        while (true) {
+                            GameBoard.goForward();
+                        }
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println(GameBoard.getString());
+                        break;
+                    }
+                default:
+                    System.out.println("Неверный ввод. Попробуйте ещё раз.");
+                    continue;
+            }
+            break;
+        }
+    }
+
+    private String possibilitiesToString(ArrayList<Possibility> possibilities) {
+        StringBuilder output = new StringBuilder();
+        output.append("Выберите ход: ");
+        for (int i = 0; i < possibilities.size(); ++i) {
+            output.append(String.format("%n%d. %s", i + 1, possibilities.get(i).getCoordinate()));
+        }
+        return output.toString();
+    }
+
     @Override
     public Move makeAMove(ArrayList<Possibility> possibilities) {
-        StringBuilder output = new StringBuilder();
-        for (int i = 0; i < possibilities.size(); ++i) {
-            output.append(String.format("%d. %s%n", i + 1, possibilities.get(i).getCoordinate()));
-        }
-        output.append("Выберите ход: ");
-        System.out.println(output);
+        System.out.println(possibilitiesToString(possibilities));
+        System.out.println("Чтобы посмотреть историю игры введите 'H'.");
         while (true) {
-            int input = Main.scanner.nextInt();
-            if (input > 0 && input <= possibilities.size()) {
-                return new Move(possibilities.get(input - 1).getChanges());
+            var input = Main.scanner.nextLine();
+            if (input.equals("H")) {
+                watchHistory();
+                possibilities = GameBoard.getPossibilities(getColoration());
+                System.out.println(possibilitiesToString(possibilities));
+                input = Main.scanner.nextLine();
             }
-            System.out.println("Неверный ввод. Попробуйте ещё раз.");
+            try {
+                var index = Integer.parseInt(input);
+                if (index < 1 || index > possibilities.size()) {
+                    System.out.println("Неверный ввод. Попробуйте ещё раз.");
+                    continue;
+                }
+                return new Move(possibilities.get(index - 1).getChanges());
+            } catch (NumberFormatException e) {
+                System.out.println("Неверный ввод. Попробуйте ещё раз.");
+            }
         }
     }
 }

@@ -39,7 +39,7 @@ public final class GameBoard {
             for (var change : moves.get(currentMove).getChanges()) {
                 checkers[change.getX()][change.getY()] = new Checker(change.getOldColoration());
             }
-        }
+        } else throw new IndexOutOfBoundsException();
     }
 
     public static void goForward() {
@@ -48,7 +48,7 @@ public final class GameBoard {
                 checkers[change.getX()][change.getY()] = new Checker(change.getNewColoration());
             }
             ++currentMove;
-        }
+        } else throw new IndexOutOfBoundsException();
     }
 
     public static ArrayList<Possibility> getPossibilities(Coloration coloration) {
