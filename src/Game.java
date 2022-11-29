@@ -5,7 +5,6 @@ public final class Game {
     // TODO advanced or not
     public static void start() {
         boolean isRealPlayerFirst;
-        boolean isAdvanced;
         String input = "";
         System.out.println("За какой цвет вы хотите играть? (белый = W / чёрный = B)");
         input = Main.scanner.nextLine();
@@ -30,7 +29,7 @@ public final class Game {
         }
     }
 
-    protected Coloration play() {
+    public static Coloration play() {
         GameBoard.refresh();
         int i = 0;
         while (true) {

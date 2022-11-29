@@ -50,9 +50,9 @@ public final class GameBoard {
             ++currentMove;
         }
     }
-    // TODO: Current version is written by Copilot. It is not tested.
-    public static Map<Coordinate, ArrayList<Change>> getPossibilities(Coloration coloration) {
-        Map<Coordinate, ArrayList<Change>> Possibilities = new HashMap<>();
+
+    public static ArrayList<Possibility> getPossibilities(Coloration coloration) {
+        ArrayList<Possibility> possibilities = new ArrayList<>();
         for (int i = 0; i < 8; ++i) {
             for (int j = 0; j < 8; ++j) {
                 if (checkers[i][j].getColoration() == Coloration.NONE) {
@@ -80,12 +80,12 @@ public final class GameBoard {
                     }
                     if (!changes.isEmpty()) {
                         changes.add(new Change(i, j, Coloration.NONE, coloration));
-                        Possibilities.put(new Coordinate(i, j), changes);
+                        possibilities.add(new Possibility(new Coordinate(i, j), changes));
                     }
                 }
             }
         }
-        return Possibilities;
+        return possibilities;
     }
 
     public static Coloration getCurrentWinner() {

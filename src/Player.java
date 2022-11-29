@@ -9,5 +9,5 @@ abstract class Player {
     protected Coloration getColoration() {
         return coloration;
     }
-    abstract Move makeAMove(Map<Coordinate, ArrayList<Change>> possibilities);
+    abstract Move makeAMove(ArrayList<Possibility> possibilities);
 }

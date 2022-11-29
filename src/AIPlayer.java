@@ -7,7 +7,7 @@ public class AIPlayer extends Player {
     }
     // TODO
     @Override
-    public Move makeAMove(Map<Coordinate, ArrayList<Change>> possibilities) {
-        return new Move(possibilities.get(possibilities.keySet().toArray()[0]));
+    public Move makeAMove(ArrayList<Possibility> possibilities) {
+        return new Move(possibilities.get(0).getChanges());
     }
 }
