@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Scanner;
 
 public class RealPlayer extends Player {
     public RealPlayer(Coloration coloration) {
         super(coloration);
     }
+
     @Override
     public Move makeAMove(Map<Coordinate, ArrayList<Change>> possibilities) {
         ArrayList<Coordinate> coordinates = new ArrayList<>(possibilities.keySet());

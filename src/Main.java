@@ -4,9 +4,9 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Game game = new Game();
         while (true) {
-            Coloration winner = game.play();
+            Game.start();
+            var winner = Game.play();
             System.out.println("Победитель... " + (winner == Coloration.WHITE ? "белый" : (winner == Coloration.BLACK ? "чёрный" : "ничья")) + "!\n");
             System.out.println("Хотите сыграть ещё раз? (Y/N)");
             while (true) {

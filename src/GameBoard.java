@@ -107,15 +107,21 @@ public final class GameBoard {
     public static String getString() {
         StringBuilder result = new StringBuilder();
         for (int y = 7; y >= 0; --y) {
+            result.append((y + 1) + " ");
             for (int x = 0; x < 8; ++x) {
                 if (checkers[x][y].getColoration() == Coloration.NONE) {
                     result.append("[ ]");
                 } else {
-                    result.append(checkers[x][y].getColoration() == Coloration.WHITE ? "[W]" : "[B]");
+                    result.append(checkers[x][y].getColoration() == Coloration.WHITE ? "[○]" : "[◙]");
                 }
             }
             result.append("\n");
         }
+        result.append("  ");
+        for (int x = 0; x < 8; ++x) {
+            result.append(" " + (x + 1) + " ");
+        }
+        result.append("\n");
         return result.toString();
     }
 }
