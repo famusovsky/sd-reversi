@@ -9,6 +9,26 @@ public class AIPlayer extends Player {
         this.isAdvanced = isAdvanced;
     }
 
+    private double countPoints(Coordinate coordinate, ArrayList<Change> changes) {
+        double currentPoints;
+        if ((coordinate.getX() == 0 || coordinate.getX() == 7) && (coordinate.getY() == 0 || coordinate.getY() == 7)) {
+            currentPoints = 0.8;
+        } else if (coordinate.getX() == 0 || coordinate.getX() == 7 || coordinate.getY() == 0 || coordinate.getY() == 7) {
+            currentPoints = 0.4;
+        } else {
+            currentPoints = 0;
+        }
+        for (int i = 0 ; i < changes.size() - 1 ; ++i) {
+            var change = changes.get(i);
+            if (change.getX() == 0 || change.getX() == 7 || change.getY() == 0 || change.getY() == 7) {
+                currentPoints += 2;
+            } else {
+                currentPoints += 1;
+            }
+        }
+        return currentPoints;
+    }
+
     private Move getBestNormalMove(Map<Coordinate, ArrayList<Change>> possibilities) {
         double maxPoints = -1;
         double currentPoints;
@@ -16,20 +36,7 @@ public class AIPlayer extends Player {
         for (var possibility : possibilities.entrySet()) {
             var coordinate = possibility.getKey();
             var changes = possibility.getValue();
-            if ((coordinate.getX() == 0 || coordinate.getX() == 7) && (coordinate.getY() == 0 || coordinate.getY() == 7)) {
-                currentPoints = 0.8;
-            } else if (coordinate.getX() == 0 || coordinate.getX() == 7 || coordinate.getY() == 0 || coordinate.getY() == 7) {
-                currentPoints = 0.4;
-            } else {
-                currentPoints = 0;
-            }
-            for (var change : changes) {
-                if (change.getX() == 0 || change.getX() == 7 || change.getY() == 0 || change.getY() == 7) {
-                    currentPoints += 2;
-                } else {
-                    currentPoints += 1;
-                }
-            }
+            currentPoints = countPoints(coordinate, changes);
             if (currentPoints > maxPoints) {
                 maxPoints = currentPoints;
                 bestMove = new Move(changes);
@@ -39,27 +46,25 @@ public class AIPlayer extends Player {
     }
 
     private Move getBestAdvancedMove(Map<Coordinate, ArrayList<Change>> possibilities) {
-        double maxPoints = -1;
+        double maxPoints = -1000;
         double currentPoints;
         Move bestMove = null;
         for (var possibility : possibilities.entrySet()) {
             var coordinate = possibility.getKey();
             var changes = possibility.getValue();
-            if ((coordinate.getX() == 0 || coordinate.getX() == 7) && (coordinate.getY() == 0 || coordinate.getY() == 7)) {
-                currentPoints = 0.8;
-            } else if (coordinate.getX() == 0 || coordinate.getX() == 7 || coordinate.getY() == 0 || coordinate.getY() == 7) {
-                currentPoints = 0.4;
-            } else {
-                currentPoints = 0;
-            }
-            for (var change : changes) {
-                if (change.getX() == 0 || change.getX() == 7 || change.getY() == 0 || change.getY() == 7) {
-                    currentPoints += 2;
-                } else {
-                    currentPoints += 1;
+            var opponentsNextMoveMaxPoints = 0.0;
+            currentPoints = countPoints(coordinate, changes);
+            GameBoard.addMove(new Move(changes));
+            for (var opponentsPossibility : GameBoard.getPossibilities(coloration == Coloration.BLACK ? Coloration.BLACK : Coloration.WHITE).entrySet()) {
+                var opponentsCoordinate = opponentsPossibility.getKey();
+                var opponentsChanges = opponentsPossibility.getValue();
+                var opponentsNextMoveCurrentPoints = countPoints(opponentsCoordinate, opponentsChanges);
+                if (opponentsNextMoveCurrentPoints > opponentsNextMoveMaxPoints) {
+                    opponentsNextMoveMaxPoints = opponentsNextMoveCurrentPoints;
                 }
             }
-            // Добавить ход в геймборд - посчитать баллы для противника вычесть - откатиться
+            currentPoints -= opponentsNextMoveMaxPoints;
+            GameBoard.goBack();
             if (currentPoints > maxPoints) {
                 maxPoints = currentPoints;
                 bestMove = new Move(changes);
@@ -71,7 +76,7 @@ public class AIPlayer extends Player {
     @Override
     public Move makeAMove(Map<Coordinate, ArrayList<Change>> possibilities) {
         if (isAdvanced) {
-            return new Move(possibilities.get(possibilities.keySet().toArray()[0]));
+            return getBestAdvancedMove(possibilities);
         } else {
             return getBestNormalMove(possibilities);
         }
