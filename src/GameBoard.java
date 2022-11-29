@@ -104,6 +104,7 @@ public final class GameBoard {
         }
         return white > black ? Coloration.WHITE : (black > white ? Coloration.BLACK : Coloration.NONE);
     }
+
     public static String getString() {
         StringBuilder result = new StringBuilder();
         for (int y = 7; y >= 0; --y) {

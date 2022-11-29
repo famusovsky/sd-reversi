@@ -1,11 +1,13 @@
 public final class Game {
     private static final Player[] players = new Player[2];
+
     private Game() {
     }
-    // TODO advanced or not
+
     public static void start() {
         boolean isRealPlayerFirst;
-        String input = "";
+        boolean isAdvanced;
+        String input;
         System.out.println("За какой цвет вы хотите играть? (белый = W / чёрный = B)");
         input = Main.scanner.nextLine();
         while (true) {

@@ -1,8 +1,7 @@
 import java.util.ArrayList;
-import java.util.Map;
 
 public class AIPlayer extends Player {
-    private boolean isAdvanced;
+    private final boolean isAdvanced;
 
     protected AIPlayer(Coloration coloration, boolean isAdvanced) {
         super(coloration);
@@ -18,7 +17,7 @@ public class AIPlayer extends Player {
         } else {
             currentPoints = 0;
         }
-        for (int i = 0 ; i < changes.size() - 1 ; ++i) {
+        for (int i = 0; i < changes.size() - 1; ++i) {
             var change = changes.get(i);
             if (change.getX() == 0 || change.getX() == 7 || change.getY() == 0 || change.getY() == 7) {
                 currentPoints += 2;
@@ -29,13 +28,13 @@ public class AIPlayer extends Player {
         return currentPoints;
     }
 
-    private Move getBestNormalMove(Map<Coordinate, ArrayList<Change>> possibilities) {
+    private Move getBestNormalMove(ArrayList<Possibility> possibilities) {
         double maxPoints = -1;
         double currentPoints;
         Move bestMove = null;
-        for (var possibility : possibilities.entrySet()) {
-            var coordinate = possibility.getKey();
-            var changes = possibility.getValue();
+        for (var possibility : possibilities) {
+            var coordinate = possibility.getCoordinate();
+            var changes = possibility.getChanges();
             currentPoints = countPoints(coordinate, changes);
             if (currentPoints > maxPoints) {
                 maxPoints = currentPoints;
@@ -45,19 +44,19 @@ public class AIPlayer extends Player {
         return bestMove;
     }
 
-    private Move getBestAdvancedMove(Map<Coordinate, ArrayList<Change>> possibilities) {
+    private Move getBestAdvancedMove(ArrayList<Possibility> possibilities) {
         double maxPoints = -1000;
         double currentPoints;
         Move bestMove = null;
-        for (var possibility : possibilities.entrySet()) {
-            var coordinate = possibility.getKey();
-            var changes = possibility.getValue();
+        for (var possibility : possibilities) {
+            var coordinate = possibility.getCoordinate();
+            var changes = possibility.getChanges();
             var opponentsNextMoveMaxPoints = 0.0;
             currentPoints = countPoints(coordinate, changes);
             GameBoard.addMove(new Move(changes));
-            for (var opponentsPossibility : GameBoard.getPossibilities(coloration == Coloration.BLACK ? Coloration.BLACK : Coloration.WHITE).entrySet()) {
-                var opponentsCoordinate = opponentsPossibility.getKey();
-                var opponentsChanges = opponentsPossibility.getValue();
+            for (var opponentsPossibility : GameBoard.getPossibilities(coloration == Coloration.BLACK ? Coloration.BLACK : Coloration.WHITE)) {
+                var opponentsCoordinate = opponentsPossibility.getCoordinate();
+                var opponentsChanges = opponentsPossibility.getChanges();
                 var opponentsNextMoveCurrentPoints = countPoints(opponentsCoordinate, opponentsChanges);
                 if (opponentsNextMoveCurrentPoints > opponentsNextMoveMaxPoints) {
                     opponentsNextMoveMaxPoints = opponentsNextMoveCurrentPoints;
@@ -74,7 +73,7 @@ public class AIPlayer extends Player {
     }
 
     @Override
-    public Move makeAMove(Map<Coordinate, ArrayList<Change>> possibilities) {
+    public Move makeAMove(ArrayList<Possibility> possibilities) {
         if (isAdvanced) {
             return getBestAdvancedMove(possibilities);
         } else {

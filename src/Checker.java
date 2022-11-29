@@ -8,11 +8,4 @@ public class Checker {
     public Coloration getColoration() {
         return this.coloration;
     }
-    public Coloration changeColoration() {
-        if (this.coloration == Coloration.BLACK) {
-            return Coloration.WHITE;
-        } else {
-            return Coloration.BLACK;
-        }
-    }
 }
