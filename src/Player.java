@@ -1,5 +1,8 @@
+import SimpleClasses.Coloration;
+import SimpleClasses.Move;
+import SimpleClasses.Possibility;
+
 import java.util.ArrayList;
-import java.util.Map;
 
 abstract class Player {
     protected final Coloration coloration;

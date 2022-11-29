@@ -1,9 +1,11 @@
+import SimpleClasses.*;
+
 import java.util.ArrayList;
 
 public class AIPlayer extends Player {
     private final boolean isAdvanced;
 
-    protected AIPlayer(Coloration coloration, boolean isAdvanced) {
+    public AIPlayer(Coloration coloration, boolean isAdvanced) {
         super(coloration);
         this.isAdvanced = isAdvanced;
     }

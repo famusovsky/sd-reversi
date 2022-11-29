@@ -1,3 +1,5 @@
+import SimpleClasses.*;
+
 import java.util.*;
 
 public final class GameBoard {

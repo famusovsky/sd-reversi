@@ -1,6 +1,8 @@
+import SimpleClasses.Coloration;
+import SimpleClasses.Move;
+import SimpleClasses.Possibility;
+
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Map;
 
 public class RealPlayer extends Player {
     public RealPlayer(Coloration coloration) {

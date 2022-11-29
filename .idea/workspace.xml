@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8233b252-d65d-4e8a-a02b-a1f19786c9ce" name="Changes" comment="Possibility class added -- from now on, the possibilities are displayed in the proper order">
+    <list default="true" id="8233b252-d65d-4e8a-a02b-a1f19786c9ce" name="Changes" comment="Merge occurred bugs are fixed + Codestyle is enhanced">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AIPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AIPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Change.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimpleClasses/Change.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Checker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimpleClasses/Checker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Coloration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimpleClasses/Coloration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Coordinate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimpleClasses/Coordinate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimpleClasses/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Possibility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimpleClasses/Possibility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RealPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RealPlayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +81,7 @@
       <workItem from="1669308098293" duration="46000" />
       <workItem from="1669308149363" duration="2000000" />
       <workItem from="1669310166865" duration="14107000" />
+      <workItem from="1669730766165" duration="976000" />
     </task>
     <task id="LOCAL-00001" summary="Blanks of classes are made">
       <created>1669316453112</created>

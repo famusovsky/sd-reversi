@@ -1,3 +1,5 @@
+import SimpleClasses.Coloration;
+
 public final class Game {
     private static final Player[] players = new Player[2];
 

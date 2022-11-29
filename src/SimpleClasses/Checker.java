@@ -1,3 +1,5 @@
+package SimpleClasses;
+
 public class Checker {
     private final Coloration coloration;
 

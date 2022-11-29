@@ -1,9 +1,11 @@
+package SimpleClasses;
+
 import java.util.ArrayList;
 
 public class Move {
     private final ArrayList<Change> changes;
 
-    Move(ArrayList<Change> changes) {
+    public Move(ArrayList<Change> changes) {
         this.changes = changes;
     }
 

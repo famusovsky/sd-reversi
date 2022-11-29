@@ -1,3 +1,5 @@
+package SimpleClasses;
+
 public class Coordinate {
     private final int x;
     private final int y;

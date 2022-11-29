@@ -1,3 +1,5 @@
+package SimpleClasses;
+
 public class Change {
     private final int x;
     private final int y;
@@ -29,6 +31,6 @@ public class Change {
 
     @Override
     public String toString() {
-        return String.format("Change: (%d, %d) %s -> %s", this.x, this.y, this.oldColoration, this.newColoration);
+        return String.format("SimpleClasses.Change: (%d, %d) %s -> %s", this.x, this.y, this.oldColoration, this.newColoration);
     }
 }

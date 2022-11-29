@@ -1,3 +1,5 @@
+import SimpleClasses.Coloration;
+
 import java.util.Scanner;
 
 public class Main {
