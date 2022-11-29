@@ -1,6 +1,7 @@
 public class Game {
     private final Player[] players = new Player[2];
 
+    // TODO advanced or not
     protected Game() {
         System.out.println("За какой цвет вы хотите играть? (белый = W / чёрный = B)");
         boolean isRealPlayerFirst;
@@ -19,9 +20,9 @@ public class Game {
         }
         if (isRealPlayerFirst) {
             players[0] = new RealPlayer(Coloration.WHITE);
-            players[1] = new AIPlayer(Coloration.BLACK);
+            players[1] = new AIPlayer(Coloration.BLACK, false);
         } else {
-            players[0] = new AIPlayer(Coloration.WHITE);
+            players[0] = new AIPlayer(Coloration.WHITE, false);
             players[1] = new RealPlayer(Coloration.BLACK);
         }
     }
