@@ -1,4 +1,5 @@
 enum Coloration {
     BLACK,
-    WHITE
+    WHITE,
+    NONE
 }

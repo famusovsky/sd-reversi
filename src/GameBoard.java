@@ -13,7 +13,7 @@ public final class GameBoard {
         currentMove = 0;
         for (int i = 0; i < 8; ++i) {
             for (int j = 0; j < 8; ++j) {
-                checkers[i][j] = null;
+                checkers[i][j] = new Checker(Coloration.NONE);
             }
         }
         checkers[3][4] = new Checker(Coloration.WHITE);
@@ -50,23 +50,23 @@ public final class GameBoard {
             ++currentMove;
         }
     }
-    // TODO: Current vesrion is written by Copilot. It is not tested.
+    // TODO: Current version is written by Copilot. It is not tested.
     public static Map<Coordinate, ArrayList<Change>> getPossibilities(Coloration coloration) {
         Map<Coordinate, ArrayList<Change>> Possibilities = new HashMap<>();
         for (int i = 0; i < 8; ++i) {
             for (int j = 0; j < 8; ++j) {
-                if (checkers[i][j] == null) {
+                if (checkers[i][j].getColoration() == Coloration.NONE) {
                     ArrayList<Change> changes = new ArrayList<>();
                     for (int k = -1; k <= 1; ++k) {
                         for (int l = -1; l <= 1; ++l) {
                             if (k != 0 || l != 0) {
                                 int x = i + k;
                                 int y = j + l;
-                                while (x >= 0 && x < 8 && y >= 0 && y < 8 && checkers[x][y] != null && checkers[x][y].getColoration() != coloration) {
+                                while (x >= 0 && x < 8 && y >= 0 && y < 8 && checkers[x][y].getColoration() != Coloration.NONE && checkers[x][y].getColoration() != coloration) {
                                     x += k;
                                     y += l;
                                 }
-                                if (x >= 0 && x < 8 && y >= 0 && y < 8 && checkers[x][y] != null && checkers[x][y].getColoration() == coloration) {
+                                if (x >= 0 && x < 8 && y >= 0 && y < 8 && checkers[x][y].getColoration() != Coloration.NONE && checkers[x][y].getColoration() == coloration) {
                                     x -= k;
                                     y -= l;
                                     while (x != i || y != j) {
@@ -79,7 +79,7 @@ public final class GameBoard {
                         }
                     }
                     if (!changes.isEmpty()) {
-                        changes.add(new Change(i, j, null, coloration));
+                        changes.add(new Change(i, j, Coloration.NONE, coloration));
                         Possibilities.put(new Coordinate(i, j), changes);
                     }
                 }
@@ -93,7 +93,7 @@ public final class GameBoard {
         int black = 0;
         for (var row : checkers) {
             for (var checker : row) {
-                if (checker != null) {
+                if (checker.getColoration() != Coloration.NONE) {
                     if (checker.getColoration() == Coloration.WHITE) {
                         ++white;
                     } else {
@@ -102,13 +102,13 @@ public final class GameBoard {
                 }
             }
         }
-        return white > black ? Coloration.WHITE : Coloration.BLACK;
+        return white > black ? Coloration.WHITE : (black > white ? Coloration.BLACK : Coloration.NONE);
     }
     public static String getString() {
         StringBuilder result = new StringBuilder();
         for (int y = 7; y >= 0; --y) {
             for (int x = 0; x < 8; ++x) {
-                if (checkers[x][y] == null) {
+                if (checkers[x][y].getColoration() == Coloration.NONE) {
                     result.append("[ ]");
                 } else {
                     result.append(checkers[x][y].getColoration() == Coloration.WHITE ? "[W]" : "[B]");

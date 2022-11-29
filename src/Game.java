@@ -31,6 +31,7 @@ public class Game {
         int i = 0;
         while (true) {
             System.out.println(GameBoard.getString());
+            System.out.println("Ходит " + (players[i % 2].getColoration() == Coloration.WHITE ? "белый" : "чёрный") + " игрок.");
             var possibilities = GameBoard.getPossibilities(players[i % 2].getColoration());
             if (possibilities.isEmpty()) {
                 if (GameBoard.getPossibilities(players[(i + 1) % 2].getColoration()).isEmpty()) {
