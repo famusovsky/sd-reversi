@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8233b252-d65d-4e8a-a02b-a1f19786c9ce" name="Changes" comment="Possibility class added -- from now on, the possibilities are displayed in the proper order">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RealPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RealPlayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

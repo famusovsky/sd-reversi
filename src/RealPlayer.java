@@ -20,7 +20,7 @@ public class RealPlayer extends Player {
             var input = Main.scanner.nextLine();
             switch (input) {
                 case "M":
-                    if (isItPossibleToCheat) {
+                    if (!isItPossibleToCheat) {
                         System.out.println("Неверный ввод. Попробуйте ещё раз.");
                         continue;
                     }
