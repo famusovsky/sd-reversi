@@ -3,18 +3,27 @@ import java.util.Comparator;
 import java.util.Map;
 
 public class RealPlayer extends Player {
-    public RealPlayer(Coloration coloration) {
+    private final boolean isItPossibleToCheat;
+
+    public RealPlayer(Coloration coloration, boolean isItPossibleToCheat) {
         super(coloration);
+        this.isItPossibleToCheat = isItPossibleToCheat;
     }
 
     private void watchHistory() {
         while (true) {
-            System.out.println("Чтобы сделать ход с текущего места введите 'M'. " +
-                    "Если вы хотите перейти на ход назад / вперёд -- введите 'B' / 'F'. " +
+            if (isItPossibleToCheat) {
+                System.out.println("Чтобы сделать ход с текущего места введите 'M'. ");
+            }
+            System.out.println("Если вы хотите перейти на ход назад / вперёд -- введите 'B' / 'F'. " +
                     "Если хотите выйти из истории введите 'E'.");
             var input = Main.scanner.nextLine();
             switch (input) {
                 case "M":
+                    if (isItPossibleToCheat) {
+                        System.out.println("Неверный ввод. Попробуйте ещё раз.");
+                        continue;
+                    }
                     break;
                 case "B":
                     try {
