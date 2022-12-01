@@ -59,6 +59,7 @@ public final class Game {
                 }
             } else {
                 var move = players[i % 2].makeAMove(possibilities);
+                System.out.println("Игрок сделал ход: " + move.getLastChangeCoordinate() + "\n");
                 GameBoard.addMove(move);
             }
             ++i;

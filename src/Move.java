@@ -10,4 +10,8 @@ public class Move {
     public ArrayList<Change> getChanges() {
         return this.changes;
     }
+
+    public Coordinate getLastChangeCoordinate() {
+        return new Coordinate(changes.get(changes.size() - 1).getX(), changes.get(changes.size() - 1).getY());
+    }
 }
