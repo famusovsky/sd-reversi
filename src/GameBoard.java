@@ -7,9 +7,14 @@ public final class GameBoard {
     private static int currentMove = 0;
     private static final Checker[][] checkers = new Checker[8][8];
     private static final ArrayList<Move> moves = new ArrayList<>(60);
+    private static final Map<Coloration, Integer> checkersCount = new EnumMap<>(Coloration.class);
 
     public static void refresh() {
         moves.clear();
+        checkersCount.clear();
+        checkersCount.put(Coloration.WHITE, 2);
+        checkersCount.put(Coloration.BLACK, 2);
+        checkersCount.put(Coloration.NONE, 60);
         currentMove = 0;
         for (int i = 0; i < 8; ++i) {
             for (int j = 0; j < 8; ++j) {
@@ -25,6 +30,8 @@ public final class GameBoard {
     public static void addMove(Move move) {
         for (var change : move.getChanges()) {
             checkers[change.getX()][change.getY()] = new Checker(change.getNewColoration());
+            checkersCount.put(change.getOldColoration(), checkersCount.get(change.getOldColoration()) - 1);
+            checkersCount.put(change.getNewColoration(), checkersCount.get(change.getNewColoration()) + 1);
         }
         if (currentMove < moves.size()) {
             moves.subList(currentMove, moves.size()).clear();
@@ -38,6 +45,8 @@ public final class GameBoard {
             --currentMove;
             for (var change : moves.get(currentMove).getChanges()) {
                 checkers[change.getX()][change.getY()] = new Checker(change.getOldColoration());
+                checkersCount.put(change.getOldColoration(), checkersCount.get(change.getOldColoration()) + 1);
+                checkersCount.put(change.getNewColoration(), checkersCount.get(change.getNewColoration()) - 1);
             }
         } else throw new IndexOutOfBoundsException();
     }
@@ -46,6 +55,8 @@ public final class GameBoard {
         if (currentMove < moves.size()) {
             for (var change : moves.get(currentMove).getChanges()) {
                 checkers[change.getX()][change.getY()] = new Checker(change.getNewColoration());
+                checkersCount.put(change.getOldColoration(), checkersCount.get(change.getOldColoration()) - 1);
+                checkersCount.put(change.getNewColoration(), checkersCount.get(change.getNewColoration()) + 1);
             }
             ++currentMove;
         } else throw new IndexOutOfBoundsException();
@@ -89,26 +100,19 @@ public final class GameBoard {
     }
 
     public static Coloration getCurrentWinner() {
-        int white = 0;
-        int black = 0;
-        for (var row : checkers) {
-            for (var checker : row) {
-                if (checker.getColoration() != Coloration.NONE) {
-                    if (checker.getColoration() == Coloration.WHITE) {
-                        ++white;
-                    } else {
-                        ++black;
-                    }
-                }
-            }
-        }
-        return white > black ? Coloration.WHITE : (black > white ? Coloration.BLACK : Coloration.NONE);
+        return checkersCount.get(Coloration.WHITE) > checkersCount.get(Coloration.BLACK) ? Coloration.WHITE :
+               checkersCount.get(Coloration.WHITE) < checkersCount.get(Coloration.BLACK) ? Coloration.BLACK :
+               Coloration.NONE;
+    }
+
+    public static int getScore(Coloration coloration) {
+        return checkersCount.get(coloration);
     }
 
     public static String getString() {
         StringBuilder result = new StringBuilder();
         for (int y = 7; y >= 0; --y) {
-            result.append((y + 1) + " ");
+            result.append(y + 1).append(" ");
             for (int x = 0; x < 8; ++x) {
                 if (checkers[x][y].getColoration() == Coloration.NONE) {
                     result.append("[ ]");
@@ -120,7 +124,7 @@ public final class GameBoard {
         }
         result.append("  ");
         for (int x = 0; x < 8; ++x) {
-            result.append(" " + (x + 1) + " ");
+            result.append(" ").append(x + 1).append(" ");
         }
         result.append("\n");
         return result.toString();

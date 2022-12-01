@@ -45,7 +45,7 @@ public final class Game {
         }
     }
 
-    public static Coloration play() {
+    public static void play() {
         GameBoard.refresh();
         int i = 0;
         while (true) {
@@ -53,6 +53,7 @@ public final class Game {
             System.out.println("Ходит " + (players[i % 2].getColoration() == Coloration.WHITE ? "белый" : "чёрный") + " игрок.");
             var possibilities = GameBoard.getPossibilities(players[i % 2].getColoration());
             if (possibilities.isEmpty()) {
+                System.out.println("Нет возможных ходов. Ход переходит к другому игроку.");
                 if (GameBoard.getPossibilities(players[(i + 1) % 2].getColoration()).isEmpty()) {
                     break;
                 }
@@ -63,6 +64,12 @@ public final class Game {
             ++i;
         }
         System.out.println(GameBoard.getString());
-        return GameBoard.getCurrentWinner();
+        var winner = GameBoard.getCurrentWinner();
+        if (winner == Coloration.NONE) {
+            System.out.println("Ничья!");
+        } else {
+            System.out.println("Победил " + (winner == Coloration.WHITE ? "белый" : "чёрный") +
+                    " игрок, набрав " + GameBoard.getScore(winner) + " баллов!");
+        }
     }
 }

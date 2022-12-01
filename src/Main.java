@@ -6,8 +6,7 @@ public class Main {
     public static void main(String[] args) {
         while (true) {
             Game.start();
-            var winner = Game.play();
-            System.out.println("Победитель... " + (winner == Coloration.WHITE ? "белый" : (winner == Coloration.BLACK ? "чёрный" : "ничья")) + "!\n");
+            Game.play();
             System.out.println("Хотите сыграть ещё раз? (Y/N)");
             while (true) {
                 String input = scanner.nextLine();
