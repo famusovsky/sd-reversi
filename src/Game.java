@@ -5,15 +5,14 @@ public final class Game {
     }
 
     public static void start() {
-        boolean isRealPlayerFirst;
-        boolean isAdvanced;
+        boolean isThereTwoPlayers;
         String input;
-        System.out.println("За какой цвет вы хотите играть? (белый = W / чёрный = B)");
+        System.out.println("Вы хотете играть против компьютера или другого игрока? (1 / 2)");
         input = Main.scanner.nextLine();
         while (true) {
             switch (input) {
-                case "W" -> isRealPlayerFirst = true;
-                case "B" -> isRealPlayerFirst = false;
+                case "1" -> isThereTwoPlayers = false;
+                case "2" -> isThereTwoPlayers = true;
                 default -> {
                     System.out.println("Неверный ввод. Попробуйте ещё раз.");
                     input = Main.scanner.nextLine();
@@ -22,26 +21,47 @@ public final class Game {
             }
             break;
         }
-        System.out.println("На каком уровне сложности вы хотите играть? (обычный = N / продвинутый = A)");
-        input = Main.scanner.nextLine();
-        while (true) {
-            switch (input) {
-                case "N" -> isAdvanced = false;
-                case "A" -> isAdvanced = true;
-                default -> {
-                    System.out.println("Неверный ввод. Попробуйте ещё раз.");
-                    input = Main.scanner.nextLine();
-                    continue;
-                }
-            }
-            break;
-        }
-        if (isRealPlayerFirst) {
-            players[0] = new RealPlayer(Coloration.WHITE);
-            players[1] = new AIPlayer(Coloration.BLACK, isAdvanced);
+        if (isThereTwoPlayers) {
+            players[0] = new RealPlayer(Coloration.WHITE, false);
+            players[1] = new RealPlayer(Coloration.BLACK, false);
         } else {
-            players[0] = new AIPlayer(Coloration.WHITE, isAdvanced);
-            players[1] = new RealPlayer(Coloration.BLACK);
+            boolean isRealPlayerFirst;
+            boolean isAdvanced;
+            System.out.println("За какой цвет вы хотите играть? (белый = W / чёрный = B)");
+            input = Main.scanner.nextLine();
+            while (true) {
+                switch (input) {
+                    case "W" -> isRealPlayerFirst = true;
+                    case "B" -> isRealPlayerFirst = false;
+                    default -> {
+                        System.out.println("Неверный ввод. Попробуйте ещё раз.");
+                        input = Main.scanner.nextLine();
+                        continue;
+                    }
+                }
+                break;
+            }
+            System.out.println("C каким компьютерным игроком вы хотите играть? (обычный = N / продвинутый = A)");
+            input = Main.scanner.nextLine();
+            while (true) {
+                switch (input) {
+                    case "N" -> isAdvanced = false;
+                    case "A" -> isAdvanced = true;
+                    default -> {
+                        System.out.println("Неверный ввод. Попробуйте ещё раз.");
+                        input = Main.scanner.nextLine();
+                        continue;
+                    }
+                }
+                break;
+            }
+            if (isRealPlayerFirst) {
+                players[0] = new RealPlayer(Coloration.WHITE, true);
+                players[1] = new AIPlayer(Coloration.BLACK, isAdvanced);
+            } else {
+                players[0] = new AIPlayer(Coloration.WHITE, isAdvanced);
+                players[1] = new RealPlayer(Coloration.BLACK, true);
+            }
         }
     }
 
