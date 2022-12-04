@@ -6,18 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8233b252-d65d-4e8a-a02b-a1f19786c9ce" name="Changes" comment="Possibility class added -- from now on, the possibilities are displayed in the proper order">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AIPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AIPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Change.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Change.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Checker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Checker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Coloration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Coloration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Coordinate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Coordinate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Possibility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Possibility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RealPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RealPlayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +81,8 @@
       <workItem from="1669741573433" duration="167000" />
       <workItem from="1669741747241" duration="630000" />
       <workItem from="1669923894090" duration="1641000" />
+      <workItem from="1670183802184" duration="2000" />
+      <workItem from="1670183819619" duration="1070000" />
     </task>
     <task id="LOCAL-00001" summary="Blanks of classes are made">
       <created>1669316453112</created>
