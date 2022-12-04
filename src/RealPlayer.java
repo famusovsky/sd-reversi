@@ -1,10 +1,17 @@
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Map;
 
+/**
+ * Класс, представляющий игрока, управляемого человеком.
+ */
 public class RealPlayer extends Player {
     private final boolean isItPossibleToCheat;
 
+    /**
+     * Конструктор класса, представляющего игрока, управляемого человеком.
+     *
+     * @param coloration          Цвет игрока.
+     * @param isItPossibleToCheat Можно ли игроку 'откатывать' состояние игровой доски назад.
+     */
     public RealPlayer(Coloration coloration, boolean isItPossibleToCheat) {
         super(coloration);
         this.isItPossibleToCheat = isItPossibleToCheat;

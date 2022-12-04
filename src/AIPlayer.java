@@ -1,9 +1,18 @@
 import java.util.ArrayList;
 
+/**
+ * Класс, описывающий компьютерного игорока.
+ */
 public class AIPlayer extends Player {
     private final boolean isAdvanced;
 
-    protected AIPlayer(Coloration coloration, boolean isAdvanced) {
+    /**
+     * Конструктор класса, описывающего компьютерного игорока.
+     *
+     * @param coloration Цвет фишек компьютера.
+     * @param isAdvanced Параметр, указывающий, будет ли компьютер использовать продвинутую стратегию.
+     */
+    public AIPlayer(Coloration coloration, boolean isAdvanced) {
         super(coloration);
         this.isAdvanced = isAdvanced;
     }

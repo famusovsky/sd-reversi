@@ -1,26 +1,33 @@
+/**
+ * Статический класс, содержащий методы для работы с игрой 'Реверси'.
+ */
 public final class Game {
     private static final Player[] players = new Player[2];
 
     private Game() {
     }
 
+    private static boolean getCorrectInput(String correct, String incorrect) {
+        String input = Main.scanner.nextLine();
+        while (true) {
+            if (input.equals(incorrect)) {
+                return false;
+            }
+            if (input.equals(correct)) {
+                return true;
+            }
+            System.out.println("Неверный ввод. Попробуйте ещё раз.");
+            input = Main.scanner.nextLine();
+        }
+    }
+
+    /**
+     * Метод, запускающий игру 'Реверси' и получающий данные о параметрах данной партии.
+     */
     public static void start() {
         boolean isThereTwoPlayers;
-        String input;
         System.out.println("Вы хотете играть против компьютера или другого игрока? (1 / 2)");
-        input = Main.scanner.nextLine();
-        while (true) {
-            switch (input) {
-                case "1" -> isThereTwoPlayers = false;
-                case "2" -> isThereTwoPlayers = true;
-                default -> {
-                    System.out.println("Неверный ввод. Попробуйте ещё раз.");
-                    input = Main.scanner.nextLine();
-                    continue;
-                }
-            }
-            break;
-        }
+        isThereTwoPlayers = getCorrectInput("2", "1");
         if (isThereTwoPlayers) {
             players[0] = new RealPlayer(Coloration.WHITE, false);
             players[1] = new RealPlayer(Coloration.BLACK, false);
@@ -28,33 +35,9 @@ public final class Game {
             boolean isRealPlayerFirst;
             boolean isAdvanced;
             System.out.println("За какой цвет вы хотите играть? (белый = W / чёрный = B)");
-            input = Main.scanner.nextLine();
-            while (true) {
-                switch (input) {
-                    case "W" -> isRealPlayerFirst = true;
-                    case "B" -> isRealPlayerFirst = false;
-                    default -> {
-                        System.out.println("Неверный ввод. Попробуйте ещё раз.");
-                        input = Main.scanner.nextLine();
-                        continue;
-                    }
-                }
-                break;
-            }
+            isRealPlayerFirst = getCorrectInput("W", "B");
             System.out.println("C каким компьютерным игроком вы хотите играть? (обычный = N / продвинутый = A)");
-            input = Main.scanner.nextLine();
-            while (true) {
-                switch (input) {
-                    case "N" -> isAdvanced = false;
-                    case "A" -> isAdvanced = true;
-                    default -> {
-                        System.out.println("Неверный ввод. Попробуйте ещё раз.");
-                        input = Main.scanner.nextLine();
-                        continue;
-                    }
-                }
-                break;
-            }
+            isAdvanced = getCorrectInput("A", "N");
             if (isRealPlayerFirst) {
                 players[0] = new RealPlayer(Coloration.WHITE, true);
                 players[1] = new AIPlayer(Coloration.BLACK, isAdvanced);
@@ -63,9 +46,10 @@ public final class Game {
                 players[1] = new RealPlayer(Coloration.BLACK, true);
             }
         }
+        play();
     }
 
-    public static void play() {
+    private static void play() {
         GameBoard.refresh();
         int i = 0;
         while (true) {

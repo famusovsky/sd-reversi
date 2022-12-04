@@ -1,5 +1,8 @@
 import java.util.*;
 
+/**
+ * Класс, представляющий игровое поле для игры в 'Реверси'.
+ */
 public final class GameBoard {
     private GameBoard() {
     }
@@ -9,6 +12,9 @@ public final class GameBoard {
     private static final ArrayList<Move> moves = new ArrayList<>(60);
     private static final Map<Coloration, Integer> checkersCount = new EnumMap<>(Coloration.class);
 
+    /**
+     * Метод, подготавливающий игровое поле к началу игры в 'Реверси'.
+     */
     public static void refresh() {
         moves.clear();
         checkersCount.clear();
@@ -27,6 +33,11 @@ public final class GameBoard {
         checkers[4][4] = new Checker(Coloration.BLACK);
     }
 
+    /**
+     * Метод, добавляющий совершённый ход в список ходов и применяющий к игоровой доске изменения, включённые в него.
+     *
+     * @param move Совершённый ход.
+     */
     public static void addMove(Move move) {
         for (var change : move.getChanges()) {
             checkers[change.getX()][change.getY()] = new Checker(change.getNewColoration());
@@ -40,6 +51,9 @@ public final class GameBoard {
         ++currentMove;
     }
 
+    /**
+     * Метод, позволяющий перейти к состоянию игровой доски, соответствующей предыдущему ходу (при его наличии).
+     */
     public static void goBack() {
         if (currentMove > 0) {
             --currentMove;
@@ -51,6 +65,9 @@ public final class GameBoard {
         } else throw new IndexOutOfBoundsException();
     }
 
+    /**
+     * Метод, позволяющий перейти к состоянию игровой доски, соответствующей следующему ходу (при его наличии).
+     */
     public static void goForward() {
         if (currentMove < moves.size()) {
             for (var change : moves.get(currentMove).getChanges()) {
@@ -62,6 +79,12 @@ public final class GameBoard {
         } else throw new IndexOutOfBoundsException();
     }
 
+    /**
+     * Метод, возвращающий список возможных ходов для игрока, играющего за указанный цвет.
+     *
+     * @param coloration Цвет данного игрока.
+     * @return Список возможных ходов для данного игрока.
+     */
     public static ArrayList<Possibility> getPossibilities(Coloration coloration) {
         ArrayList<Possibility> possibilities = new ArrayList<>();
         for (int i = 0; i < 8; ++i) {
@@ -99,16 +122,32 @@ public final class GameBoard {
         return possibilities;
     }
 
+    /**
+     * Метод, возвращающий цвет игрока, имеющего большее число шашек на игровой доске.
+     *
+     * @return Цвет игрока, имеющего большее число шашек на игровой доске.
+     */
     public static Coloration getCurrentWinner() {
         return checkersCount.get(Coloration.WHITE) > checkersCount.get(Coloration.BLACK) ? Coloration.WHITE :
-               checkersCount.get(Coloration.WHITE) < checkersCount.get(Coloration.BLACK) ? Coloration.BLACK :
-               Coloration.NONE;
+                checkersCount.get(Coloration.WHITE) < checkersCount.get(Coloration.BLACK) ? Coloration.BLACK :
+                        Coloration.NONE;
     }
 
+    /**
+     * Метод, возвращающий количество шашек данного цвета на игровой доске.
+     *
+     * @param coloration Цвет шашек.
+     * @return Количество шашек данного цвета на игровой доске.
+     */
     public static int getScore(Coloration coloration) {
         return checkersCount.get(coloration);
     }
 
+    /**
+     * Метод, возвращающий строковое представление игровой доски.
+     *
+     * @return Строковое представление игровой доски.
+     */
     public static String getString() {
         StringBuilder result = new StringBuilder();
         for (int y = 7; y >= 0; --y) {
